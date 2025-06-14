@@ -1,4 +1,0 @@
-[console_scripts]
-number_publisher = my_py_pkg.number_publisher:main
-test_node_mtm = my_py_pkg.my_first_node:main
-
