@@ -20,8 +20,11 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            #<executable_name> = <package_name>.<file_name>:<function_name>
             "test_node_mtm = my_py_pkg.my_first_node:main",
-            "number_publisher = my_py_pkg.number_publisher:main"
+            "number_publisher = my_py_pkg.number_publisher:main",
+            "thisisexe = my_py_pkg.test_node:main",
+            "thisissub = my_py_pkg.number_subscriber:main"
         ],
     },
 )
