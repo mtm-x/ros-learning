@@ -24,7 +24,9 @@ setup(
             "test_node_mtm = my_py_pkg.my_first_node:main",
             "number_publisher = my_py_pkg.number_publisher:main",
             "thisisexe = my_py_pkg.test_node:main",
-            "thisissub = my_py_pkg.number_subscriber:main"
+            "thisissub = my_py_pkg.number_subscriber:main",
+            "thisisstring = my_py_pkg.string_publisher:main",
+            "thisisstringsub = my_py_pkg.string_subscriber:main"
         ],
     },
 )
