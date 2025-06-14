@@ -26,7 +26,8 @@ setup(
             "thisisexe = my_py_pkg.test_node:main",
             "thisissub = my_py_pkg.number_subscriber:main",
             "thisisstring = my_py_pkg.string_publisher:main",
-            "thisisstringsub = my_py_pkg.string_subscriber:main"
+            "thisisstringsub = my_py_pkg.string_subscriber:main",
+            "reset_counter_client = my_py_pkg.reset_counter_client:main",
         ],
     },
 )
