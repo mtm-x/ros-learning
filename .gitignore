@@ -1,3 +1,7 @@
 build/
 install/
 log/
+src/turtle_controller/test
+src/turtle_controller/resource
+src/my_py_pkg/resource
+src/my_py_pkg/test

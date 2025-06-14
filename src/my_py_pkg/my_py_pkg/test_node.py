@@ -11,7 +11,7 @@ class MyFirstNode(Node):
         self.timer_ = self.create_timer(0.5,self.print)
 
     def print(self):
-        self.get_logger().info("HUH "+ str(self.counter_))
+        self.get_logger().info("HUH "+ str(self.counter_)) # logger always expects string
         self.counter_ += 1
 
 def main():
