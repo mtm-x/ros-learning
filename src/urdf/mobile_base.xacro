@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <!--Dont give name since we are going to include this file in our main file (mobile_robot.urdf.xacro)-->
+
+    <!-- Xacro properties are just variables and these variables are constant-->
+
+    <xacro:property name="base_length" value="0.6"/>
+    <xacro:property name="base_width" value="0.4" />
+    <xacro:property name="base_height" value="0.2" />
+    <xacro:property name="wheel_rad" value="0.1" />
+    <xacro:property name="wheel_len" value="0.05"/>
+
+
+    <!--1. Links are rigid shapes like box, cylinder etc
+        2. Frames are enters of the links 
+        3. TF(Transforms) is the relationship betweem 2 frames
+    -->
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="grey"/>
+        </visual>
+    </link>
+
+    <!--Functions? Yes xacro:macro-->
+
+    <xacro:macro name="wheel_link_mac" params="wheel_prefix"> <!-- can multiple parameter with space like params="bla bla2"-->
+        <link name="${wheel_prefix}_wheel_link" >
+            <visual>
+                <geometry>
+                    <cylinder radius="${wheel_rad}" length="${wheel_len}"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="${pi / 2} 0 0"/>
+            </visual>
+        </link>
+    </xacro:macro>
+
+    <!--Calling the macro(function)-->
+    <xacro:wheel_link_mac wheel_prefix="right"/>
+    <xacro:wheel_link_mac wheel_prefix="left"/>
+
+    <link name="front_wheel_link" >
+        <visual>
+            <geometry>
+                <sphere radius="${wheel_len}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0"/>
+        </visual>
+    </link>
+
+    <link name="base_footprint" />
+
+    <!--Joints are used to joint 2 frames to be precise-->
+
+    <joint name="base_right_wheel_joint" type="continuous">
+        <parent link ="base_link"/>
+        <child link = "right_wheel_link" />
+        <origin xyz="${-base_length / 4} ${-(base_width + wheel_len) / 2} 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <joint name="base_left_wheel_joint" type="continuous">
+        <parent link ="base_link"/>
+        <child link = "left_wheel_link" />
+        <origin xyz="${-base_length / 4} ${(base_width + wheel_len) / 2} 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <joint name="base_front_wheel_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="front_wheel_link"/>
+        <origin xyz="${base_length / 4} 0 ${-wheel_len}" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <joint name="base_joint" type="fixed">
+        <parent link = "base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    </joint>
+    
+</robot>
