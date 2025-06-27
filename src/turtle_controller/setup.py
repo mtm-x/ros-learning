@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "turtleexe = turtle_controller.controller:main"
+            "turtleexe = turtle_controller.controller:main",
+            "movesquare = turtle_controller.square:main"
         ],
     },
 )
